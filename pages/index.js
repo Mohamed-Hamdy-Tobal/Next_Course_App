@@ -25,7 +25,6 @@ export default function Home(props) {
   // useEffect(() => {
   //   setLoadedData(products)
   // }, [])
-  {console.log(props.posts)}
 
   return (
     <div className='products'>
