@@ -14,7 +14,7 @@ const PostDetails = (props) => {
 export default PostDetails
 
 // export async function getServerSideProps(context) {
-//     const productId = context.params.index;
+//     const productId = context.params.postID;
 
 //     // Fetch product data from your database or API using the productId
 //     const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${productId}`);
@@ -27,29 +27,31 @@ export default PostDetails
 //     };
 // }
 
-export const getStaticPaths = async () => {
+export async function getStaticPaths () {
     // Fetch the list of possible values for postId
     const response = await fetch('https://jsonplaceholder.typicode.com/posts');
     const posts = await response.json();
 
     // Get the paths we want to pre-render based on postId
-    const paths = posts.map((post) => ({
-        params: { postId: post.id.toString() },
-    }));
+    const paths = posts.map(post => {
+        return {
+            params: { postID: `${post.id}` },
+        }
+    })
 
-    return { paths, fallback: false };
+    return { paths: paths, fallback: false };
 };
 
-export const getStaticProps = async ({ params }) => {
-    const postId = params.postId;
+export async function  getStaticProps(context) {
+    const id = context.params.postID;
     
-    // Fetch data for the current postId
-    const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`);
-    const postDetails = await response.json();
+    // Fetch data for the current postID
+    const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
+    const PostDetails = await response.json();
 
     return {
         props: {
-            postDetails,
+            PostDetails,
         },
     };
 };
