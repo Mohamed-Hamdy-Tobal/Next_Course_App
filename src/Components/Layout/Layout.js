@@ -2,6 +2,13 @@ import { Fragment } from "react"
 import MainNavigate from "./MainNavigate"
 import Head from 'next/head'
 
+import dynamic from 'next/dynamic';
+
+const DynamicComponent = dynamic(() => import('@/src/Components/Products/ProductDetails'), {
+    loading: () => <p>Loading...</p>,
+});
+
+
 const Layout = ({children}) => {
     return (
         <>

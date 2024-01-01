@@ -1,3 +1,5 @@
+// ## Clint Side ##
+
 const PostDetails = (props) => {
     console.log(props.PostDetails)
     return (
@@ -12,6 +14,9 @@ const PostDetails = (props) => {
 }
 
 export default PostDetails
+
+
+// ## Server Side ##
 
 // export async function getServerSideProps(context) {
 //     const productId = context.params.postID;
